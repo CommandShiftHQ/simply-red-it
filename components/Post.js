@@ -1,8 +1,8 @@
-function Post (postData) {
+function Post (post) {
   return `
-    <div class="post">
-      <a href="post.html?id=${postData.id}"><h3>${postData.title}</h3></a>
-      <p>${postData.body}</p>
+    <div class="post" id=${post.id}>
+      <a href="post.html?id=${post.id}"><h3>${post.title}</h3></a>
+      <p>${post.body}</p>
     </div>
   `
 }

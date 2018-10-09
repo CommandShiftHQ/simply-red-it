@@ -8,7 +8,10 @@
 </head>
 <body>
   <div id="root"></div>
-  <script src="components/post.js"></script>
+  <script src="components/Comment.js"></script>
+  <script src="components/Comments.js"></script>
+  <script src="components/Post.js"></script>
+  <script src="layouts/Post.js"></script>
   <script src="lib/DOM.js"></script>
   <script src="lib/DataSource.js"></script>
   <script>
@@ -19,7 +22,9 @@
     const postId = queryParams.get('id');
 
     dataSource.get(`/posts/${postId}`, function (post) {
-      dom.render(Post(post));
+      dataSource.get(`/posts/${postId}/comments`, function(comments) {
+        dom.render(PostPage(post, comments));
+      });
     })
   </script>
 </body>
