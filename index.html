@@ -5,20 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Simply Red It</title>
+  <script src="components/post.js"></script>
+  <script src="components/posts.js"></script>
+  <script src="components/Header.js"></script>
+  <script src="layouts/posts.js"></script>
+  <script src="lib/DOM.js"></script>
+  <script src="lib/DataSource.js"></script>
 </head>
 <body>
   <div id="root"></div>
-  <script src="components/post.js"></script>
-  <script src="components/posts.js"></script>
-  <script src="lib/DOM.js"></script>
-  <script src="lib/DataSource.js"></script>
   <script>
     const dom = new DOM('#root');
     const dataSource = new DataSource('https://jsonplaceholder.typicode.com');
 
-    dataSource.get('/posts', function (posts) {
-      dom.render(Posts(posts));
-    })
+    dataSource.get('/posts', function(posts) {
+      dom.render(PostsPage(posts));
+    });
   </script>
 </body>
 </html>
