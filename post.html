@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Simply Red It | Post</title>
+  <script src="components/CommentForm.js"></script>
   <script src="components/Comment.js"></script>
   <script src="components/Comments.js"></script>
   <script src="components/Post.js"></script>
@@ -22,9 +23,27 @@
     const queryParams = new URLSearchParams(window.location.search);
     const postId = queryParams.get('id');
 
+    function attachFormEventListener(post, comments) {
+      const commentForm = document.getElementById('comment-form');
+      commentForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const comment = {
+          name: document.getElementById('comment-form-name').value,
+          email: document.getElementById('comment-form-email').value,
+          body: document.getElementById('comment-form-body').value,
+        };
+        dataSource.post(`/posts/${postId}/comments`, comment, (createdComment) {
+          comments.push(createdComment);
+          dom.render(PostPage(post, comments));
+          attachFormEventListener(post, comments);
+        });
+      });
+    }
+
     dataSource.get(`/posts/${postId}`, function (post) {
       dataSource.get(`/posts/${postId}/comments`, function(comments) {
         dom.render(PostPage(post, comments));
+        attachFormEventListener(post, comments);
       });
     });
   </script>

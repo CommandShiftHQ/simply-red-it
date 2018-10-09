@@ -1,7 +1,7 @@
 function Header() {
   return `
     <header>
-      <h1>MCR Digital Red It</h1>
+      <h1>MCR Digital Reddit</h1>
     </header>
   `;
 }

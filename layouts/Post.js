@@ -3,5 +3,6 @@ function PostPage(post, comments) {
     ${Header()}
     ${Post(post)}
     ${Comments(comments)}
+    ${CommentForm()}
   `;
 }
