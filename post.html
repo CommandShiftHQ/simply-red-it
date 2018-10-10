@@ -32,7 +32,7 @@
           email: document.getElementById('comment-form-email').value,
           body: document.getElementById('comment-form-body').value,
         };
-        dataSource.post(`/posts/${postId}/comments`, comment, (createdComment) {
+        dataSource.post(`/posts/${postId}/comments`, comment, function(createdComment) {
           comments.push(createdComment);
           dom.render(PostPage(post, comments));
           attachFormEventListener(post, comments);
